@@ -2,7 +2,7 @@ public class Swordsman extends Fighter{
 
 
     public Swordsman(){
-        super("Swordsman",100,new Weapon("1 hand sword",5,false));
+        super("Swordsman",100,new Weapon(5,false));
     }
 
     @Override

@@ -1,7 +1,7 @@
 public class Viking extends Fighter{
 
     public Viking(){
-        super("Viking",120,new Weapon("1 hand axe",6,true));
+        super("Viking",120,new Weapon(6,true));
     }
 
     @Override

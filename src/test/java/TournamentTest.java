@@ -48,8 +48,6 @@ public class TournamentTest {
 
         assertThat(swordsman.hitPoints()).isEqualTo(0);
         assertThat(viking.hitPoints()).isEqualTo(70);
-
-
     }
 
     /**
@@ -60,7 +58,7 @@ public class TournamentTest {
     @Test
     public void ArmoredSwordsmanVsViking() {
 
-       /* Highlander highlander = new Highlander();
+        Highlander highlander = new Highlander();
 
         Swordsman swordsman = new Swordsman()
                 .equip("buckler")
@@ -70,7 +68,6 @@ public class TournamentTest {
 
         assertThat(swordsman.hitPoints()).isEqualTo(0);
         assertThat(highlander.hitPoints()).isEqualTo(10);
-*/assert(true);
     }
 
     /**

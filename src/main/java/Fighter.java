@@ -5,6 +5,7 @@ public abstract class Fighter {
 
     private Shield shield;
 
+    private boolean armor;
     public Fighter(String name,int hitPoints, Weapon w)
     {
         this.name = name;
@@ -16,13 +17,14 @@ public abstract class Fighter {
         System.out.println(name + " VS " + target.name);
         while(!isDead() && !target.isDead() ) {
             if (!isDead()) {
-                target.takeDamage(w);
+                target.takeDamage(this);
             }
             if (!target.isDead()) {
-                takeDamage(target.w);
+                takeDamage(target);
             }
         }
     }
+
     public boolean isDead()
     {
         return hitPoints <= 0;
@@ -32,18 +34,40 @@ public abstract class Fighter {
     {
         return hitPoints;
     }
-    public void takeDamage(Weapon w){
+    private void takeDamage(Fighter f){
         //System.out.println(this.name +" take " + damage);
-        if (shield==null || !shield.block(w) )
-            hitPoints = Math.max(hitPoints - w.getDamage(), 0);
-
+        hitPoints = Math.max(hitPoints - calculeDamage(f), 0);
     }
+    private int calculeDamage(Fighter f){
+        System.out.println(f.w.getClass());
+
+        if(f.w.canHit())
+        {
+            System.out.println("passe");
+
+            if (shield==null || !shield.block(f.w) )
+            {
+                return f.w.getDamage() - (armor ?3:0) - (f.armor?1:0);
+            }
+            else
+                return 0;
+        }
+        else {
+            return 0;
+        }
+    }
+
 
     public Fighter equip(String name)
     {
-        if(name.equals("buckler"))
+        switch (name)
         {
-            shield = new Shield();
+            case "buckler":
+                shield = new Shield();
+                break;
+            case "armor":
+                armor = true;
+                break;
         }
         return this;
     }
