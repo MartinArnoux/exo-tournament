@@ -1,22 +1,25 @@
 public abstract class Fighter {
-    private String name;
+    private final String name;
     private int hitPoints;
-    private int dmg;
+    private final Weapon w;
 
-    public Fighter(String name,int hitPoints, int dmg)
+    private Shield shield;
+
+    public Fighter(String name,int hitPoints, Weapon w)
     {
         this.name = name;
         this.hitPoints = hitPoints;
-        this.dmg = dmg;
+        this.w = w;
+        shield = null;
     }
     public void engage(Fighter target){
         System.out.println(name + " VS " + target.name);
         while(!isDead() && !target.isDead() ) {
             if (!isDead()) {
-                target.takeDamage(dmg);
+                target.takeDamage(w);
             }
             if (!target.isDead()) {
-                takeDamage(target.dmg);
+                takeDamage(target.w);
             }
         }
     }
@@ -29,9 +32,19 @@ public abstract class Fighter {
     {
         return hitPoints;
     }
-    public void takeDamage(int damage){
+    public void takeDamage(Weapon w){
         //System.out.println(this.name +" take " + damage);
-        hitPoints = Math.max(hitPoints - damage, 0);
+        if (shield==null || !shield.block(w) )
+            hitPoints = Math.max(hitPoints - w.getDamage(), 0);
 
+    }
+
+    public Fighter equip(String name)
+    {
+        if(name.equals("buckler"))
+        {
+            shield = new Shield();
+        }
+        return this;
     }
 }

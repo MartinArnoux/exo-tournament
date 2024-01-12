@@ -38,7 +38,7 @@ public class TournamentTest {
     @Test
     public void SwordsmanWithBucklerVsVikingWithBuckler() {
 
-        /*Swordsman swordsman = new Swordsman()
+        Swordsman swordsman = new Swordsman()
                 .equip("buckler");
 
         Viking viking = new Viking()
@@ -47,8 +47,8 @@ public class TournamentTest {
         swordsman.engage(viking);
 
         assertThat(swordsman.hitPoints()).isEqualTo(0);
-        assertThat(viking.hitPoints()).isEqualTo(70);*/
-        assert(true);
+        assertThat(viking.hitPoints()).isEqualTo(70);
+
 
     }
 
